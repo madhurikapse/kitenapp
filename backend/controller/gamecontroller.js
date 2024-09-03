@@ -1,12 +1,13 @@
 import Game from '../model/Game.js';
+import { shuffleDeck } from '../utils.js';
 
-const shuffleDeck = (deck) => deck.sort(() => Math.random() - 0.5);
 
 export const createGame = async (req, res) => {
     const { username } = req.body;
     if (!username || typeof username !== 'string' || username.trim() === '') {
         return res.status(400).json({ message: 'Valid username is required' });
     }
+
     try {
         const deck = shuffleDeck(['😼', '🙅‍♂️', '🔀', '💣', '😼']);
         const game = new Game({ username, deck });
@@ -16,6 +17,7 @@ export const createGame = async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 };
+
 
 export const drawCard = async (req, res) => {
     const { username } = req.body;

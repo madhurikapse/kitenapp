@@ -11,7 +11,7 @@ export const UPDATE_LEADERBOARD = 'UPDATE_LEADERBOARD';
 export const startGame = () => async (dispatch) => {
     try {
         const response = await Api.post('/game/start');
-        dispatch({ type: START_GAME, payload: response.data });
+        dispatch({ type:START_GAME, payload:response.data });
     } catch (error) {
         console.error('Error starting game:', error);
     }
